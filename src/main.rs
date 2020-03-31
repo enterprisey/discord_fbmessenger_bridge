@@ -80,36 +80,6 @@ mod discord {
     }
 
     impl EventHandler for Handler {
-        /*
-        fn ready(&self, _ctx: Context, data: Ready) {
-            // *self.current_user_id.lock().unwrap() = Some(data.user.id);
-            let http = ctx.http.clone();
-
-            // Find the #general channel
-            let general_channel = data.guilds.iter().find_map(|guild| match guild {
-                GuildStatus::OnlinePartialGuild(pg) => if dbg!(&pg.name) == DISCORD_SERVER {
-                    Some(pg.channels(http.clone()).expect(&format!("Couldn't get channels for {} guild", DISCORD_SERVER)).keys().cloned().collect::<Vec<_>>())
-                } else { None },
-                GuildStatus::OnlineGuild(guild) => if dbg!(&guild.name) == DISCORD_SERVER {
-                    Some(guild.channels.keys().cloned().collect::<Vec<_>>())
-                } else {
-                    None
-                },
-                GuildStatus::Offline(id) => { println!("{:?}", id); None },
-                _ => None,
-            })
-                .expect(&format!("Couldn't find the {} Discord server", DISCORD_SERVER))
-                .into_iter().find_map(|ch_id| if ch_id.name(ctx.cache.clone()).unwrap_or("".into()) == DISCORD_CHANNEL { Some(ch_id) } else { None })
-                .expect(&format!("Couldn't find the {} channel", DISCORD_CHANNEL));
-            thread::spawn(move || listen(format!("{}:{}", LOCALHOST, PORT), |_| {
-                |msg| {
-                    general_channel.say(&http, msg).expect("error sending to discord channel");
-                    Ok(())
-                }
-            }).expect("websocket listening error"));
-        }
-        */
-
         fn guild_create(&self, ctx: Context, guild: Guild, _is_new: bool) {
             if guild.name != self.config.discord_server {
                 return;
@@ -134,7 +104,6 @@ mod discord {
                             w.content(msg);
                             w
                         }).expect("error executing webhook");
-
                         Ok(())
                     }
                 }).expect("websocket listening error")

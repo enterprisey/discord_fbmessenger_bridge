@@ -1,0 +1,19 @@
+# The name of the discord server to connect to.
+discord_server = "server name here"
+
+# The name of the discord channel to connect to. Make sure that the webhook is also connected
+# to this channel.
+discord_channel = "general"
+
+# The webhook ID to connect to. Make sure that this webhook is connected to the specified
+# channel and server.
+discord_webhook_id = 1234
+
+# The Discord token to use. Found by going to https://discordapp.com/developers/applications,
+# selecting the application you'll use for the bridge, then selecting "Bot" from the sidebar,
+# then generating a token.
+discord_token = "token goes here"
+
+# The websocket port number to connect to. Make sure this is the same port number that's
+# specified in the JavaScript code.
+messenger_port = 8080
